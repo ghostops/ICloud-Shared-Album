@@ -1,7 +1,7 @@
 {
-  "name": "photoblog",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "icloud-shared-album",
+  "version": "0.0.0",
+  "main": "build/index.js",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.20.0",
