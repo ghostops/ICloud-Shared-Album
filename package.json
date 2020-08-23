@@ -10,7 +10,9 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "start": "yarn ts-node src/index.ts"
+    "start": "yarn ts-node src/index.ts",
+    "build": "yarn tsc",
+    "test": "yarn build && yarn ts-node test/basic.test.ts B0p5oqs3qHHxyDb"
   },
   "devDependencies": {
     "@types/node": "^14.6.0"

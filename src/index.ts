@@ -4,6 +4,8 @@ import axios from 'axios';
 
 export * from './types';
 
+const IS_CLI = require.main === module;
+
 const getBaseUrl = (token: string): string => {
     const BASE_62_CHAR_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -93,7 +95,9 @@ const getUrls = async (baseUrl, photoGuids): Promise<Record<string, string>> => 
         photoGuids: photoGuids
     });
 
-    require.main === module && console.log('Retrieving URLs for ' + photoGuids[0] + ' - ' + photoGuids[photoGuids.length - 1] + '...');
+    if (IS_CLI) {
+        console.log('Retrieving URLs for ' + photoGuids[0] + ' - ' + photoGuids[photoGuids.length - 1] + '...');
+    }
 
     const { data } = await axios({
         url,
@@ -153,8 +157,6 @@ const getParsedImages = (metadata: ICloud.Metadata, urls: Record<string, string>
         ...urlMap[key]
     }));
 
-    console.log(withUrls.length);
-
     return withUrls;
 }
 
@@ -179,11 +181,11 @@ export const getImages = async (token: string): Promise<ICloud.ImageWithUrl[]> =
 }
 
 // Can be used as CLI
-if (require.main === module) {
+if (IS_CLI) {
     const token = process.argv.slice(2)[0];
 
     if (!token) {
-        throw new Error('Must provide a token as first argument.');
+        throw new Error('Must provide a token as the first argument.');
     }
     
     getImages(token).then(console.log);
