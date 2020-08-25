@@ -1,9 +1,9 @@
-name: Create a new release
+name: Tests
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 
 jobs:
   npm-publish:
@@ -25,12 +25,3 @@ jobs:
       run: TOKEN=$ICLOUD_ALBUM_TOKEN yarn test
       env:
         ICLOUD_ALBUM_TOKEN: ${{ secrets.ICLOUD_ALBUM_TOKEN }}
-
-    - name: Build the package
-      run: yarn build
-
-    - name: Publish to npm
-      run: yarn publish
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
