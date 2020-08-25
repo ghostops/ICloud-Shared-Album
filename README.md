@@ -31,6 +31,14 @@ https://www.icloud.com/sharedalbum/#B0z5qAGN1JIFd3y
 
 The string behind the hash will be your token.
 
+### CLI Usage
+
+The CLI will output the data in JSON if successful.
+
+```
+npx icloud-shared-album $TOKEN
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
