@@ -12,13 +12,23 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@master
+
     - name: Set up Node.js
       uses: actions/setup-node@master
       with:
         node-version: 12
-    - run: yarn install
-    - run: yarn test
-    - run: yarn build
+        
+    - name: Install with yarn
+      run: yarn install
+
+    - name: Run tests
+      run: TOKEN=$ICLOUD_ALBUM_TOKEN yarn test
+      env:
+        ICLOUD_ALBUM_TOKEN: ${{ secrets.ICLOUD_ALBUM_TOKEN }}
+
+    - name: Build the package
+      run: yarn build
+
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
       env:
