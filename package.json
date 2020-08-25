@@ -28,5 +28,8 @@
   "author": {
     "name": "Ludvig Larsendahl",
     "url": "https://ghostops.nu"
+  },
+  "bin": {
+    "icloud-shared-album": "./build/bin.js"
   }
 }
