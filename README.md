@@ -22,6 +22,15 @@ const data = await getImages('YOUR_ALBUM_TOKEN');
 console.log(data);
 ```
 
+You can obtain your ICloud album token from the public URL.
+
+```
+https://www.icloud.com/sharedalbum/#B0z5qAGN1JIFd3y
+                                    ^^^^^^^^^^^^^^^
+```
+
+The string behind the hash will be your token.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
