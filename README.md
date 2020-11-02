@@ -14,7 +14,7 @@ npm install -s icloud-shared-album
 
 ## Usage
 
-Apple are using CORS protection for the library API endpoints. Recommended use is server-side to avoid CORS-errors in your client.
+Apple uses CORS protection for the iCloud library API endpoints. Recommended use is server-side to avoid any CORS related errors.
 
 ```js
 import { getImages } from 'icloud-shared-album';
