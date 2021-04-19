@@ -1,6 +1,6 @@
 {
   "name": "icloud-shared-album",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "build/index.js",
   "license": "MIT",
   "dependencies": {
