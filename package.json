@@ -4,7 +4,7 @@
   "main": "build/index.js",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.26.0",
     "lodash.chunk": "^4.2.0"
   },
   "scripts": {

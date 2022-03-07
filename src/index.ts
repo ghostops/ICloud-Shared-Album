@@ -12,7 +12,7 @@ export const getImages = async (token: string): Promise<ICloud.ImageWithUrl[]> =
     const metadata = await getPhotoMetadata(baseUrl);
 
     const chunks = _chunk(metadata.photoGuids, 25);
-    
+
     let allUrls: Record<string, string> = {};
 
     for (const chunk of chunks) {
