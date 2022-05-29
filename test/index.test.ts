@@ -5,6 +5,10 @@ import { getImages } from '../src';
 const TOKEN = process.env.TOKEN;
 
 describe('ICloud album test', () => {
+    test('Token set', () => {
+        expect(TOKEN).toBeTruthy();
+    });
+
     test('Validate album data', async () => {
         const album = await getImages(TOKEN);
 
