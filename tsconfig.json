@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "strict": false ,
+    "strict": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
     "typeRoots": ["./src", "./node_modules/@types"],
@@ -10,7 +10,7 @@
     "lib": ["ES2020", "DOM"],
     "rootDir": "./src",
     "outDir": "./build",
-    "declaration": true,
+    "declaration": true
   },
   "include": ["src/**/*"]
 }
