@@ -27,8 +27,24 @@ export const getPhotoMetadata = async (baseUrl: string): Promise<ICloud.Metadata
     const photos: Record<string, ICloud.Image> = {};
     const photoGuids: string[] = [];
 
-    data.photos.forEach(function(photo) {
-        photos[photo.photoGuid] = photo;
+    data.photos.forEach((photo) => {
+        photos[photo.photoGuid] = {
+            ...photo,
+            batchDateCreated: parseDate(photo.batchDateCreated),
+            dateCreated: parseDate(photo.dateCreated),
+            height: Number(photo.height),
+            width: Number(photo.width),
+            derivatives: Object.keys(photo.derivatives).map((key) => {
+                const value = photo.derivatives[key];
+
+                return {
+                    ...value,
+                    fileSize: Number(value.fileSize),
+                    width: Number(value.width),
+                    height: Number(value.height),
+                }
+            }),
+        };
         photoGuids.push(photo.photoGuid);
     });
 
@@ -65,4 +81,12 @@ export const getUrls = async (baseUrl: string, photoGuids: string[]): Promise<Re
     }
 
     return items;
+}
+
+const parseDate = (date: string): Date => {
+    try {
+        return new Date(date);
+    } catch {
+        return undefined;
+    }
 }

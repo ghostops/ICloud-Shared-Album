@@ -14,8 +14,17 @@ describe('ICloud album test', () => {
         const firstImage = album[0];
 
         // Test library-added attributes
-        expect(typeof firstImage.url).toBe('string');
-        expect(typeof firstImage.bestDerivative).toBe('object');
+        expect(typeof firstImage.derivatives).toBe('object');
+        expect(typeof firstImage.height).toBe('number');
+        expect(typeof firstImage.width).toBe('number');
+        expect(typeof firstImage.dateCreated).toBe('object');
+        expect(typeof firstImage.batchDateCreated).toBe('object');
+
+        const firstDerivative = Object.values(firstImage.derivatives)[0];
+
+        expect(typeof firstDerivative.url).toBe('string');
+        expect(typeof firstDerivative.height).toBe('number');
+        expect(typeof firstDerivative.width).toBe('number');
     });
 
     test('Expect 404 error if token is invalid', async () => {

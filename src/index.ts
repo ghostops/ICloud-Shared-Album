@@ -1,4 +1,4 @@
-import { enrichImages } from './enrich';
+import { enrichImagesWithUrls } from './enrich';
 import { getBaseUrl } from './baseUrl';
 import { getPhotoMetadata, getUrls } from './metadata';
 import { ICloud } from './types';
@@ -6,7 +6,7 @@ import * as _chunk from 'lodash.chunk';
 
 export * from './types';
 
-export const getImages = async (token: string): Promise<ICloud.ImageWithUrl[]> => {
+export const getImages = async (token: string): Promise<ICloud.Image[]> => {
     const baseUrl = getBaseUrl(token);
 
     const metadata = await getPhotoMetadata(baseUrl);
@@ -20,7 +20,7 @@ export const getImages = async (token: string): Promise<ICloud.ImageWithUrl[]> =
         allUrls = Object.assign(allUrls, urls);
     }
 
-    return enrichImages(metadata, allUrls);
+    return enrichImagesWithUrls(metadata, allUrls);
 }
 
 export default getImages;

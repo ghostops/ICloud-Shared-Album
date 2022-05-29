@@ -1,26 +1,27 @@
 export module ICloud {
-    export interface Image {
+    export type Derivative = {
+        checksum: string;
+        fileSize: number;
+        width: number;
+        height: number;
+        url?: string;
+    }
+
+    export type Image = {
         batchGuid: string;
-        derivatives: any;
+        derivatives: Record<string, Derivative>;
         contributorLastName: string;
         batchDateCreated: Date;
         dateCreated: Date;
         contributorFirstName: string;
         photoGuid: string;
         contributorFullName: string;
-        width: string;
         caption: string;
-        height: string;
+        height: number;
+        width: number;
     }
 
-    export interface UrlDerivative {
-        url: string;
-        bestDerivative: any;
-    }
-
-    export type ImageWithUrl = Image & UrlDerivative;
-
-    export interface Metadata {
+    export type Metadata = {
         photos: Record<string, ICloud.Image>;
         photoGuids: string[];
     }

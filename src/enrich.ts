@@ -1,43 +1,27 @@
 import { ICloud } from './types';
 
-export const enrichImages = (metadata: ICloud.Metadata, urls: Record<string, string>): ICloud.ImageWithUrl[] => {
-    const urlMap: Record<string, ICloud.UrlDerivative> = {};
+export const enrichImagesWithUrls = (metadata: ICloud.Metadata, urls: Record<string, string>): ICloud.Image[] => {
+    const photos = Object.values(metadata.photos);
 
-    for (const photoId in metadata.photos) {
-        const photo = metadata.photos[photoId];
+    const photosWithDerivativeUrls = photos.map((photo) => {
+        const derivativesObject = Object.values(photo.derivatives as unknown as Record<string, ICloud.Derivative>);
 
-        let biggestFileSize = 0;
-        let bestDerivative = null;
-
-        for (const derivativeId in photo.derivatives) {
-            const derivative = photo.derivatives[derivativeId];
-
-            if (parseInt(derivative.fileSize, 10) > biggestFileSize) {
-                biggestFileSize = parseInt(derivative.fileSize, 10);
-                bestDerivative = derivative;
-            }
-        }
-
-        if (bestDerivative) {
-            if (typeof urls[bestDerivative.checksum] == 'undefined') {
-                continue;
+        const derivatives = derivativesObject.reduce((root, derivative) => {
+            if (typeof urls[derivative.checksum] === 'undefined') {
+                return root;
             }
 
-            const url = urls[bestDerivative.checksum];
+            return {
+                ...root,
+                [derivative.height]: {
+                    ...derivative,
+                    url: urls[derivative.checksum]
+                },
+            };
+        }, {});
 
-            if (!urlMap[photoId]) {
-                urlMap[photoId] = {
-                    bestDerivative,
-                    url,
-                };
-            }
-        }
-    }
+        return { ...photo, derivatives };
+    });
 
-    const withUrls = Object.keys(metadata.photos).map((key) => ({
-        ...metadata.photos[key],
-        ...urlMap[key]
-    }));
-
-    return withUrls;
+    return photosWithDerivativeUrls;
 }
