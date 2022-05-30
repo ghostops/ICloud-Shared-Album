@@ -10,14 +10,21 @@ describe('ICloud album test', () => {
   });
 
   test('Validate album data', async () => {
-    const album = await getImages(TOKEN);
+    const { metadata, photos } = await getImages(TOKEN);
 
     // The album should have at least 1 image
-    expect(album.length).toBeGreaterThan(0);
+    expect(photos.length).toBeGreaterThan(0);
 
-    const firstImage = album[0];
+    const firstImage = photos[0];
 
     // Test library-added attributes
+    expect(typeof metadata.streamName).toBe('string');
+    expect(typeof metadata.locations).toBe('object');
+    expect(typeof metadata.streamCtag).toBe('string');
+    expect(typeof metadata.userFirstName).toBe('string');
+    expect(typeof metadata.userLastName).toBe('string');
+    expect(typeof metadata.itemsReturned).toBe('number');
+
     expect(typeof firstImage.derivatives).toBe('object');
     expect(typeof firstImage.height).toBe('number');
     expect(typeof firstImage.width).toBe('number');

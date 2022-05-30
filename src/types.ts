@@ -22,7 +22,22 @@ export module ICloud {
   };
 
   export type Metadata = {
+    streamName: string;
+    userFirstName: string;
+    userLastName: string;
+    streamCtag: string;
+    itemsReturned: number;
+    locations: unknown;
+  };
+
+  export type ApiResponse = {
     photos: Record<string, ICloud.Image>;
     photoGuids: string[];
+    metadata: Metadata;
+  };
+
+  export type Response = {
+    metadata: Metadata;
+    photos: ICloud.Image[];
   };
 }

@@ -2,6 +2,24 @@
 
 ICloud Shared Album is a library for scraping data off public icloud shared albums. Heavily utilization of [bertrandom/icloud-shared-album-to-flickr](https://github.com/bertrandom/icloud-shared-album-to-flickr), thanks for the great starting point!
 
+### Breaking changes in v1.1.0
+
+We now return the `metadata` associated with an album in addition to an array of images. The response from `getImages` now looks like this:
+
+```typescript
+{
+  metadata: {
+    streamName: 'string',
+    userFirstName: 'string',
+    userLastName: 'string',
+    streamCtag: 'string',
+    itemsReturned: 0,
+    locations: {},
+  },
+  photos: [{ ...'same as before' }],
+}
+```
+
 ### Breaking changes in v1.0.0
 
 The `bestDerivative` and `url` variables have been removed. Instead the variable `url` has been added to the `Derivative` object. The key to the derivative is the height of the image, just like in the response from ICloud.

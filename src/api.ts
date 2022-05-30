@@ -13,7 +13,7 @@ const headers = {
   Connection: 'keep-alive',
 };
 
-export const getPhotoMetadata = async (baseUrl: string): Promise<ICloud.Metadata> => {
+export const getApiResponse = async (baseUrl: string): Promise<ICloud.ApiResponse> => {
   const url = baseUrl + 'webstream';
 
   const dataString = JSON.stringify({ streamCtag: null });
@@ -52,6 +52,14 @@ export const getPhotoMetadata = async (baseUrl: string): Promise<ICloud.Metadata
   return {
     photos,
     photoGuids,
+    metadata: {
+      streamName: data.streamName,
+      userFirstName: data.userFirstName,
+      userLastName: data.userLastName,
+      streamCtag: data.streamCtag,
+      itemsReturned: Number(data.itemsReturned),
+      locations: data.locations,
+    },
   };
 };
 

@@ -1,10 +1,10 @@
 import { ICloud } from './types';
 
 export const enrichImagesWithUrls = (
-  metadata: ICloud.Metadata,
+  apiResponse: ICloud.ApiResponse,
   urls: Record<string, string>,
 ): ICloud.Image[] => {
-  const photos = Object.values(metadata.photos);
+  const photos = Object.values(apiResponse.photos);
 
   const photosWithDerivativeUrls = photos.map((photo) => {
     const derivativesObject = Object.values(
