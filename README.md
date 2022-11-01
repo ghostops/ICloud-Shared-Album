@@ -2,6 +2,51 @@
 
 ICloud Shared Album is a library for scraping data off public icloud shared albums. Heavily utilization of [bertrandom/icloud-shared-album-to-flickr](https://github.com/bertrandom/icloud-shared-album-to-flickr), thanks for the great starting point!
 
+## Installation
+
+Use npm or yarn to install the package:
+
+```bash
+yarn add icloud-shared-album
+# or
+npm install -s icloud-shared-album
+```
+
+## Usage
+
+Apple uses CORS protection for the iCloud library API endpoints. Recommended use is server-side to avoid any CORS related errors.
+
+```js
+import { getImages } from 'icloud-shared-album';
+
+const data = await getImages('YOUR_ALBUM_TOKEN');
+
+console.log(data);
+```
+
+You can obtain your ICloud album token from the public URL.
+
+```
+https://www.icloud.com/sharedalbum/#B0z5qAGN1JIFd3y
+                                    ^^^^^^^^^^^^^^^
+```
+
+The string behind the hash will be your token.
+
+### CLI Usage
+
+The CLI will output the data in JSON if successful.
+
+```
+npx icloud-shared-album $TOKEN
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Changelog
+
 ### Breaking changes in v1.1.0
 
 We now return the `metadata` associated with an album in addition to an array of images. The response from `getImages` now looks like this:
@@ -60,49 +105,6 @@ Now:
   }
 }
 ```
-
-## Installation
-
-Use npm or yarn to install the package:
-
-```bash
-yarn add icloud-shared-album
-# or
-npm install -s icloud-shared-album
-```
-
-## Usage
-
-Apple uses CORS protection for the iCloud library API endpoints. Recommended use is server-side to avoid any CORS related errors.
-
-```js
-import { getImages } from 'icloud-shared-album';
-
-const data = await getImages('YOUR_ALBUM_TOKEN');
-
-console.log(data);
-```
-
-You can obtain your ICloud album token from the public URL.
-
-```
-https://www.icloud.com/sharedalbum/#B0z5qAGN1JIFd3y
-                                    ^^^^^^^^^^^^^^^
-```
-
-The string behind the hash will be your token.
-
-### CLI Usage
-
-The CLI will output the data in JSON if successful.
-
-```
-npx icloud-shared-album $TOKEN
-```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
