@@ -19,6 +19,7 @@ export module ICloud {
     caption: string;
     height: number;
     width: number;
+    mediaAssetType?: 'video';
   };
 
   export type Metadata = {

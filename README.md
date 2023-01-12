@@ -47,6 +47,36 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Changelog
 
+### Changes in v1.2.0
+
+Duplicate derivatives are now handled with an incrementing index:
+
+```typescript
+derivatives: {
+  '720': {
+    checksum: 'string',
+    fileSize: 1000,
+    width: 50,
+    height: 720,
+    url: 'https://...',
+  },
+  '720-1': {
+    checksum: 'string',
+    fileSize: 5000,
+    width: 500,
+    height: 720,
+    url: 'https://...',
+  },
+  '720-2': {
+    checksum: 'string',
+    fileSize: 10000,
+    width: 5000,
+    height: 720,
+    url: 'https://...',
+  }
+}
+```
+
 ### Breaking changes in v1.1.0
 
 We now return the `metadata` associated with an album in addition to an array of images. The response from `getImages` now looks like this:
