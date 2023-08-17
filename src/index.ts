@@ -2,7 +2,7 @@ import { enrichImagesWithUrls } from './enrich';
 import { getBaseUrl } from './baseUrl';
 import { getApiResponse, getUrls } from './api';
 import { ICloud } from './types';
-import * as chunk from 'lodash.chunk';
+import { chunk } from './chunk';
 
 export * from './types';
 

@@ -36,7 +36,7 @@ describe('ICloud album test', () => {
     expect(typeof firstDerivative.url).toBe('string');
     expect(typeof firstDerivative.height).toBe('number');
     expect(typeof firstDerivative.width).toBe('number');
-  });
+  }, 30000);
 
   test('Expect 404 error if token is invalid', async () => {
     let status = 200;
