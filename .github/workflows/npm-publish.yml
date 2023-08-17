@@ -18,19 +18,19 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install with yarn
-        run: yarn install
+      - name: Install with npm
+        run: npm i
 
       - name: Run tests
-        run: TOKEN=$ICLOUD_ALBUM_TOKEN yarn test
+        run: TOKEN=$ICLOUD_ALBUM_TOKEN npm run test
         env:
           ICLOUD_ALBUM_TOKEN: ${{ secrets.ICLOUD_ALBUM_TOKEN }}
 
       - name: Build the package
-        run: yarn build
+        run: npm run build
 
       - name: Publish to npm
-        run: yarn publish
+        run: npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

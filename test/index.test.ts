@@ -1,6 +1,6 @@
 import { getImages } from '../src';
 
-// To run tests: TOKEN=X yarn test OR yarn cross-env TOKEN=X yarn test
+// To run tests: TOKEN=X npm run test
 // The token should correspond to a public album with at least 1 image in it
 const TOKEN = process.env.TOKEN as string;
 

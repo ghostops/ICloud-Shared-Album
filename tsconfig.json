@@ -7,7 +7,7 @@
     "strictNullChecks": false,
     "typeRoots": ["./src", "./node_modules/@types"],
     "strictFunctionTypes": false,
-    "lib": ["ES2020", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "rootDir": "./src",
     "outDir": "./build",
     "declaration": true

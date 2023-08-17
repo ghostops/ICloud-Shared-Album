@@ -4,12 +4,8 @@ ICloud Shared Album is a library for scraping data off public icloud shared albu
 
 ## Installation
 
-Use npm or yarn to install the package:
-
 ```bash
-yarn add icloud-shared-album
-# or
-npm install -s icloud-shared-album
+npm i icloud-shared-album
 ```
 
 ## Usage
