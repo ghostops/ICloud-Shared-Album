@@ -73,12 +73,6 @@ export const getUrls = async (
     photoGuids: photoGuids,
   });
 
-  if (require.main === module) {
-    console.log(
-      'Retrieving URLs for ' + photoGuids[0] + ' - ' + photoGuids[photoGuids.length - 1] + '...',
-    );
-  }
-
   const { data } = await axios({
     url,
     method: 'POST',

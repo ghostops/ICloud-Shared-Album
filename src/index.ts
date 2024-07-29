@@ -4,6 +4,7 @@ import { getApiResponse, getUrls } from './api';
 import { ICloud } from './types';
 import { chunk } from './chunk';
 
+export { enrichAssetWithUrl } from './enrich';
 export * from './types';
 
 export const getImages = async (token: string): Promise<ICloud.Response> => {
@@ -24,6 +25,16 @@ export const getImages = async (token: string): Promise<ICloud.Response> => {
     metadata: apiResponse.metadata,
     photos: enrichImagesWithUrls(apiResponse, allUrls),
   };
+};
+
+export const getSharedAlbumData = async (token: string): Promise<ICloud.ApiResponse> => {
+  const baseUrl = getBaseUrl(token);
+  return getApiResponse(baseUrl);
+};
+
+export const getWebAssetUrls = async (token: string, guids: string[]) => {
+  const baseUrl = getBaseUrl(token);
+  return getUrls(baseUrl, guids);
 };
 
 export default getImages;

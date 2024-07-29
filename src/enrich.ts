@@ -6,10 +6,15 @@ export const enrichImagesWithUrls = (
 ): ICloud.Image[] => {
   const photos = Object.values(apiResponse.photos);
 
-  const photosWithDerivativeUrls = photos.map((photo) => {
-    const derivativesObject = Object.values(
-      photo.derivatives as unknown as Record<string, ICloud.Derivative>,
-    );
+  const photosWithDerivativeUrls = photos.map(enrichAssetWithUrl(urls));
+
+  return photosWithDerivativeUrls;
+};
+
+export const enrichAssetWithUrl =
+  (urls: Record<string, string>) =>
+  (asset: ICloud.Image): ICloud.Image => {
+    const derivativesObject = Object.values(asset.derivatives);
 
     const duplicateCount = [];
 
@@ -39,8 +44,5 @@ export const enrichImagesWithUrls = (
       };
     }, {});
 
-    return { ...photo, derivatives };
-  });
-
-  return photosWithDerivativeUrls;
-};
+    return { ...asset, derivatives };
+  };
